@@ -1,0 +1,19 @@
+<template name="questionDetails">
+    <h3>Details</h3>
+
+    {{#with currentQuestion}}
+        <h1>{{content}}</h1>
+
+            {{#each answers}}
+                <h3>{{content}}</h3>
+            {{/each}}
+
+        <h3>
+            {{#if private}}
+            <span class="text-danger">Private</span>
+            {{else}}
+            <span class="text-info">Public</span>
+            {{/if}}
+        </h3>
+    {{/with}}
+</template>

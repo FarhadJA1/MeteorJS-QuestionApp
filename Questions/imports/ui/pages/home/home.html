@@ -1,0 +1,43 @@
+<template name="currentQuestions">
+    <div class="container mt-3">
+        <div class="div">
+            <form action="" id="question-form">
+                <input type="text" name="question" id="question-add" placeholder="Question">
+                <input type="text" name="answer-1" id="answer-1" placeholder="Answer 1">
+                <input type="text" name="answer-2" id="answer-2" placeholder="Answer 2">
+                <input type="text" name="answer-3" id="answer-3" placeholder="Answer 3">
+                <label for="private">private</label>
+                <input type="checkbox" name="private" id="private">
+                <button type="submit">Add</button>
+            </form>
+        </div>
+        <div class="div">
+            <form action="" id="update-form" class="d-none">
+                <input value="{{getClickedQuestion.content}}" type="text" name="question-update" id="question-update" placeholder="Question">
+                {{#each getClickedQuestion.answers}}
+                    <input value="{{this.content}}" type="text" name="update-answer-{{this._id}}" id="update-answer">
+                {{/each}}
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+    {{#each getQuestions}}
+    {{#if private}}        
+    <h1 class="question-area text-danger">{{this.content}}</h1>
+    <a href="/question-details/{{_id}}" class="btn btn-outline-info">Details</a>
+    {{else}}
+    <h1 class="question-area">{{this.content}}</h1>
+    <a href="/question-details/{{_id}}" class="btn btn-outline-info">Details</a>
+    {{/if}}
+    <button type="button" class="btn btn-outline-danger remove">Delete</button>
+    <button type="button" class="btn btn-outline-warning update">Edit</button>
+        <ul>
+            {{#each this.answers}}
+                <li>{{this.content}} 
+                    <button type="button" class="btn btn-outline-danger remove-answer">Delete</button> 
+                                       
+                </li> 
+            {{/each}}
+        </ul>
+    {{/each}}
+</template>
